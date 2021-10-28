@@ -1,1 +1,1 @@
-# HANADataLakeIQ
+# HANADataLake
