@@ -90,3 +90,11 @@
     --key ./client.key "https://c1c62fe6-39d5-40e2-a5d9-de2074363752.files.hdl.prod-ap12.hanacloud.ondemand.com/webhdfs/v1/?op=LISTSTATUS_RECURSIVE" -X GET
 
 ## 2. Connect into HANA Cloud, Data Lake Files in Connection Manangement in Data Intelligence
+
+![](Images/hdlf_cm.png)<br>
+
+![](Images/hdlf_info.png)<br>
+
+![](Images/hdlf_meta1.png)<br>
+
+![](Images/hdlf_meta2.png)<br>
