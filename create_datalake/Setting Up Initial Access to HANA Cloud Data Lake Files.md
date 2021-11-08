@@ -117,7 +117,7 @@ Data Lake Files Configurations의 Save 메뉴를 선택하고 저장하면, Data
 Data Intelligence Launchpad에서 Connection Management 메뉴를 선택합니다.<br>
 Keystore File 란에 확장자가 .p12인 client.p12 파일을 선택합니다.<br>
 Keystore Pwd 란에 암호 문자열을 입력합니다.<br>
-Endpoint 란에 Data Lake Files Endpoint를 입력합니다. 이 정보는 Data Lake Instance의 "Copy Files REST API Endpoint" 메뉴를 선택하면 Data Lake Files Endpoint가 복사됩니다.<br> 
+Endpoint 란에 Data Lake Files Endpoint를 입력합니다. 이 정보는 Data Lake Instance의 "Copy Files REST API Endpoint" 메뉴를 선택하면 Data Lake Files Endpoint가 클리보드로 복사됩니다.<br> 
 Root Path 란에 / 를 입력합니다 <br>
 
 ![](Images/hdlf_cm.png)<br>
