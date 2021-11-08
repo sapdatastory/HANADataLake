@@ -1,6 +1,6 @@
 # SAP HANA Cloud, Data Lake 자료
 
-HANA Cloud, Data Lake에 대한 Tech Tips & Sample을 공유합니다.
+HANA Cloud, Data Lake에 대한 Tech Tips 및 Sample Script를 공유합니다.
 
 - **[HANA Cloud, Data Lake 생성](create_datalake/)**
     - [1. Data Lake IQ 생성하기](create_datalake#create-data-lake-db.md)
