@@ -1,6 +1,6 @@
 # HANA Cloud, Data Lake Files 액세스
 
-## 1. How to create certificate for HANA Data Lake File Container
+## 1. HANA Cloud, Data Lake Files 인증서 
 
     /home/user/hdl_files % openssl genrsa -out ca.key 2048
     Generating RSA private key, 2048 bit long modulus (2 primes)
@@ -80,7 +80,7 @@
 
     # 확장자(.p12) 파일은 Data Intelligence에서 HANA Cloud, Data Lake Files로 연결할 때 사용합니다.
 
-## 2. Setting up initial access to HANA Cloud, Data Lake Files
+## 2. HANA Cloud, Data Lake Files 연결 설정하기
 
 SAP HANA Cloud Central에서 Data Lake Instances를 선택하면, Data Lake Instance의 목록이 출력됩니다.<br>
 Data Lake Instance 목록에서 Actions(...) 메뉴를 선택한 후, Manage File Container 메뉴를 선택합니다.<br>
