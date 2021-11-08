@@ -1,0 +1,201 @@
+{
+	"properties": {},
+	"description": "Unload Table into File",
+	"processes": {
+		"graphterminator1": {
+			"component": "com.sap.util.graphTerminator",
+			"metadata": {
+				"label": "Graph Terminator",
+				"x": 355,
+				"y": 12,
+				"height": 80,
+				"width": 120,
+				"generation": 1,
+				"config": {}
+			}
+		},
+		"tableconsumer1": {
+			"component": "com.sap.database.table.consumer.v2",
+			"metadata": {
+				"label": "Table Consumer",
+				"x": 17,
+				"y": 12,
+				"height": 80,
+				"width": 120,
+				"extensible": false,
+				"generation": 1,
+				"config": {
+					"service": "HDL_DB",
+					"partitionType": "None",
+					"serviceConnection": {
+						"configurationType": "Configuration Manager",
+						"connectionID": "zHDL"
+					},
+					"source": {
+						"remoteObjectReference": {
+							"connection": {
+								"id": "zHDL",
+								"type": "HDL_DB"
+							},
+							"name": "NATION",
+							"remoteObjectType": "TABLE",
+							"qualifiedName": "/USER1/NATION",
+							"nativeQualifiedName": "USER1.NATION",
+							"owner": "USER1"
+						},
+						"dataAccessConfiguration": {
+							"Row Count": "0",
+							"TableType": "TABLE",
+							"Table_Subtype": "TABLE",
+							"MetadataResponseXML": "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<MetadataReply xmlns=\"http://www.sap.com/DataServices/DataServicesXSD\">\n<MetadataObjects><Table Name=\"NATION\"  Owner=\"USER1\" ><Attributes><Attribute Name=\"Table_Subtype\"  Value=\"TABLE\" /></Attributes><Column Name=\"N_NATIONKEY\"  Nullable=\"false\" DataType=\"int\" NativeType=\"integer\" ActaEnum=\"ACTA_INTEGER\" ></Column><Column Name=\"N_NAME\"  Nullable=\"false\" DataType=\"varchar\" Size=\"25\"  NativeType=\"varchar\" ActaEnum=\"ACTA_VARCSTR\" ></Column><Column Name=\"N_REGIONKEY\"  Nullable=\"false\" DataType=\"int\" NativeType=\"integer\" ActaEnum=\"ACTA_INTEGER\" ></Column><Column Name=\"N_COMMENT\"  Nullable=\"false\" DataType=\"varchar\" Size=\"152\"  NativeType=\"varchar\" ActaEnum=\"ACTA_VARCSTR\" ></Column><PrimaryKey><PrimaryKeyColumn>N_NATIONKEY</PrimaryKeyColumn></PrimaryKey><TableIndex Name=\"ASIQ_IDX_T1733_I5_HG\" Unique=\"true\" isPrimary=\"true\"><IndexColumn Name=\"N_NATIONKEY\" /></TableIndex><TableIndex Name=\"ASIQ_IDX_T1733_C3_HG\" Unique=\"false\" ><IndexColumn Name=\"N_REGIONKEY\" /></TableIndex><ForeignKey Name=\"FK_NATION_REFERENCE_REGION\" ReferredTable=\"REGION\" ReferredTableOwner=\"USER1\" ReferredTableKey=\"PK_REGION\" ><PKFKColumn ReferredColumn=\"R_REGIONKEY\" Column=\"N_REGIONKEY\" /></ForeignKey></Table></MetadataObjects><Status><StatusCode>SUCCESS</StatusCode></Status></MetadataReply>"
+						},
+						"schema": {
+							"genericType": "TABLE",
+							"tableBasedRepresentation": {
+								"attributes": [],
+								"uniqueKeys": [
+									{
+										"attributeReferences": [
+											"N_NATIONKEY"
+										]
+									}
+								]
+							}
+						},
+						"capabilityProperties": [
+							{
+								"name": "isProfileable",
+								"value": "true"
+							}
+						]
+					}
+				},
+				"outports": [
+					{
+						"name": "outTable",
+						"type": "table",
+						"vtype-ID": "$GRAPH.generated.tableconsumer1_outTable"
+					}
+				]
+			}
+		},
+		"structuredfileproducer1": {
+			"component": "com.sap.storage.producer.v2",
+			"metadata": {
+				"label": "Structured File Producer",
+				"x": 186,
+				"y": 12,
+				"height": 80,
+				"width": 120,
+				"extensible": false,
+				"generation": 1,
+				"config": {
+					"service": "HDL_FILES",
+					"serviceConnection": {
+						"configurationType": "Configuration Manager",
+						"connectionID": "zHDLF"
+					},
+					"source": {
+						"remoteObjectReference": {
+							"connection": {
+								"id": "zHDLF",
+								"type": "HDL_FILES"
+							},
+							"qualifiedName": "/di_unload_nation.csv",
+							"name": "di_unload_nation.csv"
+						},
+						"schema": {
+							"genericType": "TABLE",
+							"tableBasedRepresentation": {
+								"attributes": [
+									{
+										"name": "N_NATIONKEY",
+										"templateType": "int32"
+									},
+									{
+										"name": "N_NAME",
+										"templateType": "string",
+										"length": 25
+									},
+									{
+										"name": "N_REGIONKEY",
+										"templateType": "int32"
+									},
+									{
+										"name": "N_COMMENT",
+										"templateType": "string",
+										"length": 152
+									}
+								]
+							}
+						}
+					},
+					"format": "CSV",
+					"mode": "overwrite",
+					"additionalProperties_csv": {
+						"columnDelimiter": "|",
+						"csvHeaderIncluded": true
+					},
+					"writePartFiles": false,
+					"attributeMappings": [
+						{
+							"expression": "\"N_NATIONKEY\"",
+							"target": "N_NATIONKEY"
+						},
+						{
+							"expression": "\"N_NAME\"",
+							"target": "N_NAME"
+						},
+						{
+							"expression": "\"N_REGIONKEY\"",
+							"target": "N_REGIONKEY"
+						},
+						{
+							"expression": "\"N_COMMENT\"",
+							"target": "N_COMMENT"
+						}
+					]
+				},
+				"inports": [
+					{
+						"name": "inTable",
+						"type": "table",
+						"vtype-ID": "$GRAPH.generated.tableconsumer1_outTable"
+					}
+				]
+			}
+		}
+	},
+	"groups": [],
+	"connections": [
+		{
+			"metadata": {
+				"points": "141,52 181,52"
+			},
+			"src": {
+				"port": "outTable",
+				"process": "tableconsumer1"
+			},
+			"tgt": {
+				"port": "inTable",
+				"process": "structuredfileproducer1"
+			}
+		},
+		{
+			"metadata": {
+				"points": "310,52 350,52"
+			},
+			"src": {
+				"port": "outMessage",
+				"process": "structuredfileproducer1"
+			},
+			"tgt": {
+				"port": "stop",
+				"process": "graphterminator1"
+			}
+		}
+	],
+	"inports": {},
+	"outports": {},
+	"metadata": {}
+}
