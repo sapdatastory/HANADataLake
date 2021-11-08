@@ -89,11 +89,28 @@
     curl --insecure -H "x-sap-filecontainer: c1c62fe6-39d5-40e2-a5d9-de2074363752" --cert ./client.crt \
     --key ./client.key "https://c1c62fe6-39d5-40e2-a5d9-de2074363752.files.hdl.prod-ap12.hanacloud.ondemand.com/webhdfs/v1/?op=LISTSTATUS_RECURSIVE" -X GET
 
-## 2. Connect into HANA Cloud, Data Lake Files in Connection Manangement in Data Intelligence
+
+## 2. Setting up initial access to HANA Cloud, Data Lake Files
+
+SAP HANA Cloud Central에서 Data Lake Instances를 선택하면, Data Lake Instance의 목록이 출력됩니다.<br>
+Data Lake Instance 목록에서 Actions(...) 메뉴를 선택한 후, Manage File Container 메뉴를 선택합니다.<br>
+
+![](Images/hdlf_managefile.png)<br>
+
+Data Lake Files Configurations의 Edit 메뉴를 선택합니다.<br>
+
+Trust (0)에서 Add 메뉴를 선택한 후, Alias에 ca 입력, Upload File에 ca.crt 파일을 선택합니다.<br>
+
+![](Images/hdlf_trusts.png)<br>
+
+![](Images/hdlf_authorizations.png)<br>
 
 ![](Images/hdlf_cm.png)<br>
 
-![](Images/hdlf_info.png)<br>
+
+## 3. Connect into HANA Cloud, Data Lake Files in Connection Manangement in Data Intelligence
+
+![](Images/hdlf_cm.png)<br>
 
 ![](Images/hdlf_meta1.png)<br>
 
