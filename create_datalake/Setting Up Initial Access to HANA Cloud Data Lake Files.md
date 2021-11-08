@@ -128,5 +128,7 @@ Upload Files 아이콘을 선택합니다.<br>
 
 ![](Images/hdlf_meta1.png)<br>
 
+Data Lake Files 저장소로 적재할 파일을 선택합니다.<br>
+customer.tbl, nation.tbl, region.tbl, supplier.tbl<br>
 
 ![](Images/hdlf_meta2.png)<br>
