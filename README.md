@@ -1,4 +1,4 @@
-# SAP HANA Cloud, Data Lake 기술 자료
+# SAP HANA Cloud, Data Lake 자료
 
 HANA Cloud, Data Lake에 대한 Tech Tips & Sample을 공유합니다.
 
