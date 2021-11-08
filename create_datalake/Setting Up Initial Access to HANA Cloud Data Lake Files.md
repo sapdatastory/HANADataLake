@@ -79,16 +79,6 @@
     -rw-------  1 i063382  staff  2413 Oct  1 02:32 client.p12
 
     # 확장자(.p12) 파일은 Data Intelligence에서 HANA Cloud, Data Lake Files로 연결할 때 사용합니다.
-    
-    curl --insecure -H "x-sap-filecontainer: c1c62fe6-39d5-40e2-a5d9-de2074363752" --cert ./client.crt \
-    --key ./client.key "https://c1c62fe6-39d5-40e2-a5d9-de2074363752.files.hdl.prod-ap12.hanacloud.ondemand.com/webhdfs/v1/?op=LISTSTATUS" -X GET
-
-    curl --insecure -H "x-sap-filecontainer: c1c62fe6-39d5-40e2-a5d9-de2074363752" --cert ./client.crt \
-    --key ./client.key "https://c1c62fe6-39d5-40e2-a5d9-de2074363752.files.hdl.prod-ap12.hanacloud.ondemand.com/webhdfs/v1/?op=WHOAMI" -X GET
-
-    curl --insecure -H "x-sap-filecontainer: c1c62fe6-39d5-40e2-a5d9-de2074363752" --cert ./client.crt \
-    --key ./client.key "https://c1c62fe6-39d5-40e2-a5d9-de2074363752.files.hdl.prod-ap12.hanacloud.ondemand.com/webhdfs/v1/?op=LISTSTATUS_RECURSIVE" -X GET
-
 
 ## 2. Setting up initial access to HANA Cloud, Data Lake Files
 
@@ -109,10 +99,34 @@ Generate Pattern 메뉴를 선택한 후, Upload File에 client.crt 파일을 �
 
 Data Lake Files Configurations의 Save 메뉴를 선택하고 저장하면, Data Lake Instance가 restart 합니다.<br>
 
-## 3. Connect into HANA Cloud, Data Lake Files in Connection Manangement in Data Intelligence
+
+## 3. curl(OpenAPI) -> HANA Cloud, Data Lake Files 연결하기 
+    
+    curl --insecure -H "x-sap-filecontainer: c1c62fe6-39d5-40e2-a5d9-de2074363752" --cert ./client.crt \
+    --key ./client.key "https://c1c62fe6-39d5-40e2-a5d9-de2074363752.files.hdl.prod-ap12.hanacloud.ondemand.com/webhdfs/v1/?op=LISTSTATUS" -X GET
+
+    curl --insecure -H "x-sap-filecontainer: c1c62fe6-39d5-40e2-a5d9-de2074363752" --cert ./client.crt \
+    --key ./client.key "https://c1c62fe6-39d5-40e2-a5d9-de2074363752.files.hdl.prod-ap12.hanacloud.ondemand.com/webhdfs/v1/?op=WHOAMI" -X GET
+
+    curl --insecure -H "x-sap-filecontainer: c1c62fe6-39d5-40e2-a5d9-de2074363752" --cert ./client.crt \
+    --key ./client.key "https://c1c62fe6-39d5-40e2-a5d9-de2074363752.files.hdl.prod-ap12.hanacloud.ondemand.com/webhdfs/v1/?op=LISTSTATUS_RECURSIVE" -X GET
+
+
+## 4. Data Intelligence -> HANA Cloud, Data Lake Files 연결하기
+
+Data Intelligence Launchpad에서 Connection Management 메뉴를 선택합니다.<br>
+Keystore File 란에 확장자가 .p12인 client.p12 파일을 선택합니다.<br>
+Keystore Pwd 란에 암호 문자열을 입력합니다.<br>
+Endpoint 란에 Data Lake Files Endpoint를 입력합니다. 이 정보는 Data Lake Instance의 "Copy Files REST API Endpoint" 메뉴를 선택하면 Data Lake Files Endpoint가 복사됩니다.<br> 
+Root Path 란에 / 를 입력합니다 <br>
 
 ![](Images/hdlf_cm.png)<br>
 
+Data Intelligence Launchpad에서 Metadata Explorer 메뉴를 선택합니다.<br>
+Browser Connections 메뉴를 선택한 후, zHDF 연결 정보를 선택합니다<br>
+Upload Files 아이콘을 선택합니다.<br>
+
 ![](Images/hdlf_meta1.png)<br>
+
 
 ![](Images/hdlf_meta2.png)<br>
