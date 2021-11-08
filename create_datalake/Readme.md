@@ -2,7 +2,7 @@
 
 ![](Images/BTP_Cockpit_HANACloud2.png)<br>
 
-## HDL Central
+## HDL Cloud Central
 
 ![](Images/hdl_HANA_Cloud_Central.png)<br>
 
