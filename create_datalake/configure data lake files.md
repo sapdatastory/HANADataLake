@@ -1,4 +1,4 @@
-# HANA Cloud, Data Lake Files 액세스
+# HANA Cloud, Data Lake Files 구성하기
 
 ## 1. HANA Cloud, Data Lake Files 인증서 
 
