@@ -9,5 +9,5 @@ HANA Cloud, Data Lake에 대한 Tech Tips 및 Sample Script를 공유합니다.
 <br>
 
 - **[HANA Cloud, Data Lake Quick Start Tutorial](quick_start_tutorial/)**
-    - [ABAP Custom Operator Example](Custom/ABAP)
-    - [IQ(HDL) Custom Operator Example](Custom/IQ)
+    - [사용자 및 테이블 생성](quick_start_tutorial/ABAP)
+    - [데이터 적재](quick_start_tutorial/IQ)
