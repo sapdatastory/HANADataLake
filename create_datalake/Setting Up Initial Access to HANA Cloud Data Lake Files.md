@@ -102,12 +102,12 @@ Trust 에서 Add 메뉴를 선택한 후, Alias에 ca 입력하고 Upload File�
 
 ![](Images/hdlf_trusts.png)<br>
 
-Authorizations 에서 Add 메뉴를 선택한 후, Rank와 Role를 선택한 후, Generate Pattern 메뉴를 선택하고 Upload File에 client.crt 파일을 선택합니다.<br>
+Authorizations 에서 Add 메뉴를 선택한 후, Rank와 Role를 선택합니다.<br>
+Generate Pattern 메뉴를 선택한 후, Upload File에 client.crt 파일을 선택합니다.<br>
 
 ![](Images/hdlf_authorizations.png)<br>
 
-Data Lake Files Configurations의 Save 메뉴를 선택합니다.<br>
-Data Lake Instance가 restart됩니다.<br>
+Data Lake Files Configurations의 Save 메뉴를 선택하고 저장하면, Data Lake Instance가 restart 합니다.<br>
 
 ## 3. Connect into HANA Cloud, Data Lake Files in Connection Manangement in Data Intelligence
 
