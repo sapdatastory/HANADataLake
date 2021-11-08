@@ -1,4 +1,4 @@
-# BTP Cockpit - SAP HANA Cloud
+# SAP BTP Cockpit -> SAP HANA Cloud
 
 ![](Images/BTP_Cockpit_HANACloud2.png)<br>
 
