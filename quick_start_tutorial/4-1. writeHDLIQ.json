@@ -1,0 +1,228 @@
+{
+	"properties": {},
+	"description": "Load File into Table",
+	"processes": {
+		"structuredfileconsumer1": {
+			"component": "com.sap.storage.consumer.v2",
+			"metadata": {
+				"label": "Structured File Consumer",
+				"x": 17,
+				"y": 12,
+				"height": 80,
+				"width": 120,
+				"extensible": false,
+				"generation": 1,
+				"config": {
+					"service": "HDL_FILES",
+					"serviceConnection": {
+						"configurationType": "Configuration Manager",
+						"connectionID": "zHDLF"
+					},
+					"source": {
+						"remoteObjectReference": {
+							"connection": {
+								"id": "zHDLF",
+								"type": "HDL_FILES"
+							},
+							"name": "nation.tbl",
+							"remoteObjectType": "FILE.CSV",
+							"qualifiedName": "/nation.tbl",
+							"nativeQualifiedName": "/nation.tbl",
+							"owner": "dokon",
+							"size": 2103,
+							"version": {
+								"dataLastModified": 1636365004000,
+								"metadataLastModified": 1636365004000,
+								"metadataVersionNumber": 1636365004000
+							}
+						},
+						"dataAccessConfiguration": {
+							"rowDelimiter": "\n",
+							"charset": "ISO-8859-1",
+							"textDelimiter": "\"",
+							"header": false,
+							"escapeCharacter": "\"",
+							"colDelimiter": "|"
+						},
+						"schema": {
+							"genericType": "TABLE",
+							"tableBasedRepresentation": {
+								"attributes": []
+							}
+						},
+						"capabilityProperties": [
+							{
+								"name": "isProfileable",
+								"value": "true"
+							}
+						]
+					},
+					"failOnStringTruncation": true
+				},
+				"outports": [
+					{
+						"name": "outTable",
+						"type": "table",
+						"vtype-ID": "$GRAPH.generated.structuredfileconsumer1_outTable"
+					}
+				]
+			}
+		},
+		"tableproducer1": {
+			"component": "com.sap.database.table.producer.v2",
+			"metadata": {
+				"label": "Table Producer",
+				"x": 186,
+				"y": 12,
+				"height": 80,
+				"width": 120,
+				"extensible": false,
+				"generation": 1,
+				"config": {
+					"service": "HDL_DB",
+					"serviceConnection": {
+						"configurationType": "Configuration Manager",
+						"connectionID": "zHDL"
+					},
+					"source": {
+						"remoteObjectReference": {
+							"connection": {
+								"id": "zHDL",
+								"type": "HDL_DB"
+							},
+							"name": "NATION_DI",
+							"remoteObjectType": "TABLE",
+							"qualifiedName": "/USER1/NATION_DI",
+							"nativeQualifiedName": "USER1.NATION_DI",
+							"owner": "USER1"
+						},
+						"dataAccessConfiguration": {
+							"Row Count": "0",
+							"TableType": "TABLE",
+							"Table_Subtype": "TABLE",
+							"MetadataResponseXML": "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<MetadataReply xmlns=\"http://www.sap.com/DataServices/DataServicesXSD\">\n<MetadataObjects><Table Name=\"NATION_DI\"  Owner=\"USER1\" ><Attributes><Attribute Name=\"Table_Subtype\"  Value=\"TABLE\" /></Attributes><Column Name=\"N_NATIONKEY\"  Nullable=\"false\" DataType=\"int\" NativeType=\"integer\" ActaEnum=\"ACTA_INTEGER\" ></Column><Column Name=\"N_NAME\"  Nullable=\"false\" DataType=\"varchar\" Size=\"25\"  NativeType=\"varchar\" ActaEnum=\"ACTA_VARCSTR\" ></Column><Column Name=\"N_REGIONKEY\"  Nullable=\"false\" DataType=\"int\" NativeType=\"integer\" ActaEnum=\"ACTA_INTEGER\" ></Column><Column Name=\"N_COMMENT\"  Nullable=\"false\" DataType=\"varchar\" Size=\"152\"  NativeType=\"varchar\" ActaEnum=\"ACTA_VARCSTR\" ></Column><PrimaryKey><PrimaryKeyColumn>N_NATIONKEY</PrimaryKeyColumn></PrimaryKey><TableIndex Name=\"ASIQ_IDX_T1736_I5_HG\" Unique=\"true\" isPrimary=\"true\"><IndexColumn Name=\"N_NATIONKEY\" /></TableIndex></Table></MetadataObjects><Status><StatusCode>SUCCESS</StatusCode></Status></MetadataReply>"
+						},
+						"schema": {
+							"genericType": "TABLE",
+							"tableBasedRepresentation": {
+								"attributes": [
+									{
+										"name": "N_NATIONKEY",
+										"templateType": "int32",
+										"datatype": "INTEGER",
+										"length": 4,
+										"nativeDatatype": "integer"
+									},
+									{
+										"name": "N_NAME",
+										"templateType": "string",
+										"datatype": "STRING",
+										"length": 25,
+										"nativeDatatype": "varchar"
+									},
+									{
+										"name": "N_REGIONKEY",
+										"templateType": "int32",
+										"datatype": "INTEGER",
+										"length": 4,
+										"nativeDatatype": "integer"
+									},
+									{
+										"name": "N_COMMENT",
+										"templateType": "string",
+										"datatype": "STRING",
+										"length": 152,
+										"nativeDatatype": "varchar"
+									}
+								],
+								"uniqueKeys": [
+									{
+										"attributeReferences": [
+											"N_NATIONKEY"
+										]
+									}
+								]
+							}
+						},
+						"capabilityProperties": [
+							{
+								"name": "isProfileable",
+								"value": "true"
+							}
+						]
+					},
+					"mode": "truncate",
+					"attributeMappings": [
+						{
+							"expression": "\"C0\"",
+							"target": "N_NATIONKEY"
+						},
+						{
+							"expression": "\"C1\"",
+							"target": "N_NAME"
+						},
+						{
+							"expression": "\"C2\"",
+							"target": "N_REGIONKEY"
+						},
+						{
+							"expression": "\"C3\"",
+							"target": "N_COMMENT"
+						}
+					]
+				},
+				"inports": [
+					{
+						"name": "inTable",
+						"type": "table",
+						"vtype-ID": "$GRAPH.generated.structuredfileconsumer1_outTable"
+					}
+				]
+			}
+		},
+		"graphterminator1": {
+			"component": "com.sap.util.graphTerminator",
+			"metadata": {
+				"label": "Graph Terminator",
+				"x": 355,
+				"y": 12,
+				"height": 80,
+				"width": 120,
+				"generation": 1,
+				"config": {}
+			}
+		}
+	},
+	"groups": [],
+	"connections": [
+		{
+			"metadata": {
+				"points": "141,52 181,52"
+			},
+			"src": {
+				"port": "outTable",
+				"process": "structuredfileconsumer1"
+			},
+			"tgt": {
+				"port": "inTable",
+				"process": "tableproducer1"
+			}
+		},
+		{
+			"metadata": {
+				"points": "310,52 350,52"
+			},
+			"src": {
+				"port": "outMessage",
+				"process": "tableproducer1"
+			},
+			"tgt": {
+				"port": "stop",
+				"process": "graphterminator1"
+			}
+		}
+	],
+	"inports": {},
+	"outports": {},
+	"metadata": {}
+}
