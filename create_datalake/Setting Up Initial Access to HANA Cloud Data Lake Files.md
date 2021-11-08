@@ -1,13 +1,16 @@
 # HANA Cloud, Data Lake Files 액세스
 
-    (base) i063382@C02FM3QJQ05P tmp1 % openssl genrsa -out ca.key 2048
+    How to create certificate for HANA Data Lake File Container
+
+
+    /home/user/hdl_files % openssl genrsa -out ca.key 2048
     Generating RSA private key, 2048 bit long modulus (2 primes)
     ....................+++++
     .....................................................+++++
     e is 65537 (0x010001)
-    (base) i063382@C02FM3QJQ05P tmp1 % 
-    (base) i063382@C02FM3QJQ05P tmp1 % 
-    (base) i063382@C02FM3QJQ05P tmp1 % openssl req -x509 -new -key ca.key -days 200 -out ca.crt
+    
+    
+    /home/user/hdl_files % openssl req -x509 -new -key ca.key -days 200 -out ca.crt
     You are about to be asked to enter information that will be incorporated
     into your certificate request.
     What you are about to enter is what is called a Distinguished Name or a DN.
@@ -22,9 +25,9 @@
     Organizational Unit Name (eg, section) []:
     Common Name (e.g. server FQDN or YOUR name) []:ca
     Email Address []:
-    (base) i063382@C02FM3QJQ05P tmp1 % 
-    (base) i063382@C02FM3QJQ05P tmp1 % 
-    (base) i063382@C02FM3QJQ05P tmp1 % openssl req -new -nodes -newkey rsa:2048 -out client.csr -keyout client.key
+    
+    
+    /home/user/hdl_files % openssl req -new -nodes -newkey rsa:2048 -out client.csr -keyout client.key
     Generating a RSA private key
     ...............+++++
     .....................................................................+++++
@@ -49,24 +52,24 @@
     to be sent with your certificate request
     A challenge password []:
     An optional company name []:
-    (base) i063382@C02FM3QJQ05P tmp1 % 
-    (base) i063382@C02FM3QJQ05P tmp1 % 
-    (base) i063382@C02FM3QJQ05P tmp1 % openssl x509 -days 100 -req -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out client.crt
+    
+    
+    /home/user/hdl_files % openssl x509 -days 100 -req -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out client.crt
     Signature ok
     subject=C = KR, ST = Seoul, O = Internet Widgits Pty Ltd, CN = dokon
     Getting CA Private Key
-    (base) i063382@C02FM3QJQ05P tmp1 % 
-    (base) i063382@C02FM3QJQ05P tmp1 % 
-    (base) i063382@C02FM3QJQ05P tmp1 % openssl verify -CAfile ca.crt client.crt
+    
+    
+    /home/user/hdl_files % openssl verify -CAfile ca.crt client.crt
     client.crt: OK
-    (base) i063382@C02FM3QJQ05P tmp1 % 
-    (base) i063382@C02FM3QJQ05P tmp1 % 
-    (base) i063382@C02FM3QJQ05P tmp1 % openssl pkcs12 -export -out client.p12 -in client.crt -inkey client.key
+    
+    # 암호 - Data Intelligence에서 HANA Cloud, Data Lake로 연결할 때 사용합니다.
+    /home/user/hdl_files % openssl pkcs12 -export -out client.p12 -in client.crt -inkey client.key
     Enter Export Password:
     Verifying - Enter Export Password:
-    (base) i063382@C02FM3QJQ05P tmp1 % 
-    (base) i063382@C02FM3QJQ05P tmp1 % 
-    (base) i063382@C02FM3QJQ05P tmp1 % ls -l
+    
+    
+    /home/user/hdl_files % ls -l
     total 56
     -rw-r--r--  1 i063382  staff  1269 Oct  1 02:05 ca.crt
     -rw-------  1 i063382  staff  1679 Oct  1 02:05 ca.key
@@ -75,10 +78,9 @@
     -rw-r--r--  1 i063382  staff   972 Oct  1 02:06 client.csr
     -rw-------  1 i063382  staff  1704 Oct  1 02:05 client.key
     -rw-------  1 i063382  staff  2413 Oct  1 02:32 client.p12
-    (base) i063382@C02FM3QJQ05P tmp1 % 
-    (base) i063382@C02FM3QJQ05P tmp1 % 
 
-
+    # 확장자(.p12) 파일은 Data Intelligence에서 HANA Cloud, Data Lake Files로 연결할 때 사용합니다.
+    
     curl --insecure -H "x-sap-filecontainer: c1c62fe6-39d5-40e2-a5d9-de2074363752" --cert ./client.crt \
     --key ./client.key "https://c1c62fe6-39d5-40e2-a5d9-de2074363752.files.hdl.prod-ap12.hanacloud.ondemand.com/webhdfs/v1/?op=LISTSTATUS" -X GET
 
@@ -87,4 +89,3 @@
 
     curl --insecure -H "x-sap-filecontainer: c1c62fe6-39d5-40e2-a5d9-de2074363752" --cert ./client.crt \
     --key ./client.key "https://c1c62fe6-39d5-40e2-a5d9-de2074363752.files.hdl.prod-ap12.hanacloud.ondemand.com/webhdfs/v1/?op=LISTSTATUS_RECURSIVE" -X GET
-
