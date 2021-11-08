@@ -1,7 +1,6 @@
 # HANA Cloud, Data Lake Files 액세스
 
-    How to create certificate for HANA Data Lake File Container
-
+## 1. How to create certificate for HANA Data Lake File Container
 
     /home/user/hdl_files % openssl genrsa -out ca.key 2048
     Generating RSA private key, 2048 bit long modulus (2 primes)
@@ -89,3 +88,5 @@
 
     curl --insecure -H "x-sap-filecontainer: c1c62fe6-39d5-40e2-a5d9-de2074363752" --cert ./client.crt \
     --key ./client.key "https://c1c62fe6-39d5-40e2-a5d9-de2074363752.files.hdl.prod-ap12.hanacloud.ondemand.com/webhdfs/v1/?op=LISTSTATUS_RECURSIVE" -X GET
+
+## 2. Connect into HANA Cloud, Data Lake Files in Connection Manangement in Data Intelligence
