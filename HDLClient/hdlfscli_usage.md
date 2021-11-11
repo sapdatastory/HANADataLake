@@ -28,3 +28,29 @@ hdlfs://host
 -config : JSON configuration file
 ```
 
+Configuration File 생성
+```shell
+hdlfscli \
+   -cert client.crt \
+   -key client.key \
+   -s https://${HDLFS_SERVER} \
+   -config inst-1 \
+   -dump-config \
+   ls
+
+ {
+   "configs": {
+     "inst-1": {
+       "timeout": 3000000000,
+       "format": "text",
+       "cert": "client.crt",
+       "key": "client.key",
+       "endpoint": "https://${HDLFS_SERVER}"
+     }
+   }
+ }
+ 
+hdlfscli -config inst-1 ls
+hdlfscli -config inst-1 download file.txt
+```
+
