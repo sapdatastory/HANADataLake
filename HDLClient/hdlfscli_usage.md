@@ -38,6 +38,7 @@ hdlfscli \
    -dump-config \
    ls
 
+# inst-1 configuration file
  {
    "configs": {
      "inst-1": {
