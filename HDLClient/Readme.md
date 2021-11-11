@@ -1,1 +1,1 @@
-# HANA Data Lake Client
+# HANA Data Lake Client 정보
