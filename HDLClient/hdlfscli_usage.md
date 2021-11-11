@@ -58,3 +58,74 @@ hdlfscli -config inst-1 ls
 hdlfscli -config inst-1 download file.txt
 ```
 
+add File into File Container
+```shell
+hdlfscli 
+	-cert client.crt 
+	-key client.key 
+	-cacert rootca.crt 
+	-s https://${HDLFS_SERVER} 
+	-filecontainer ${HDLFS_FILE_CONTAINER} 
+	upload README.md tmp/README.md
+```
+
+download File from File Container
+```shell
+hdlfscli 
+	-cert client.crt 
+	-key client.key 
+	-cacert rootca.crt 
+	-format text 
+	-output /tmp/README_COPY.md 
+	-s https://${HDLFS_SERVER} 
+	-filecontainer ${HDLFS_FILE_CONTAINER} 
+	download tmp/README.md
+```
+
+delete File from File Container
+```shell
+hdlfscli 
+	-cert client.crt 
+	-key client.key 
+	-cacert rootca.crt 
+	-format json 
+	-pretty 
+	-s ${HDLFS_SERVER} 
+	-filecontainer ${HDLFS_FILE_CONTAINER} 
+	rm tmp/README.md tmp/README2.md
+```
+
+list File in File Container
+```shell
+hdlfscli 
+	-cert client.crt 
+	-key client.key 
+	-cacert rootca.crt 
+	-s ${HDLFS_SERVER} 
+	-filecontainer ${HDLFS_FILE_CONTAINER} 
+	ls tmp
+   
+hdlfscli 
+	-cert client.crt 
+	-key client.key 
+	-cacert rootca.crt 
+	-format json 
+	-pretty 
+	-s https://${HDLFS_SERVER} 
+	-filecontainer ${HDLFS_FILE_CONTAINER} 
+	list tmp   
+```
+
+move File in File Container
+```shell
+hdlfscli 
+	-cert client.crt 
+	-key client.key 
+	-cacert rootca.crt 
+	-format json 
+	-pretty 
+	-s https://${HDLFS_SERVER} 
+	-filecontainer ${HDLFS_FILE_CONTAINER} 
+	mv tmp/README.md /tmp/README2.md
+```
+
