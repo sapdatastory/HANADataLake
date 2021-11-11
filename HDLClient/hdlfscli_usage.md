@@ -1,5 +1,8 @@
 # hdlfscli 사용법
 
+hdlfscli는 Data Lake IQ Client에 포함된 Data Lake Files을 위한 command-line 유틸리티입니다.
+hdlfscli를 사용하면 File Container에 대한 작업을 실행할 수 있습니다.
+
 Parameter
 ```shell
 -s : file container endpoint
