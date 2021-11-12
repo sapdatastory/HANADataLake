@@ -33,29 +33,33 @@ hdlfs://host
 
 Configuration File 생성
 ```shell
+# -config-file 파라미터 설정하지 않으면 default configuration file 생성
 hdlfscli \
-   -cert client.crt \
-   -key client.key \
+   -cert ./hdl_files/client.crt \
+   -key ./hdl_files/client.key \
    -s https://${HDLFS_SERVER} \
-   -config inst-1 \
+   -config hdlfs1 \
    -dump-config \
    ls
 
-# inst-1 configuration file
- {
-   "configs": {
-     "inst-1": {
-       "timeout": 3000000000,
-       "format": "text",
-       "cert": "client.crt",
-       "key": "client.key",
-       "endpoint": "https://${HDLFS_SERVER}"
-     }
-   }
- }
- 
-hdlfscli -config inst-1 ls
-hdlfscli -config inst-1 download file.txt
+# default configuration file : $HOME/.hdlfscli.config.json
+cat .hdlfscli.config.json
+{
+  "configs": {
+    "hdlfs1": {
+      "timeout": 3000000000,
+      "format": "text",
+      "cert": "./hdl_files/client.crt",
+      "key": "./hdl_files/client.key",
+      "user": "",
+      "role": "",
+      "endpoint": "https://${HDLFS_SERVER}"
+    }
+  }
+}
+
+hdlfscli -config hdlfs1 ls
+hdlfscli -config hdlfs1 -output file_local.txt download file_hdlfs.txt
 ```
 
 add File into File Container
