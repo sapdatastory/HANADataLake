@@ -35,8 +35,8 @@ Configuration File 생성
 ```shell
 # -config-file 파라미터 설정하지 않으면 default configuration file 생성
 hdlfscli \
-   -cert ./hdl_files/client.crt \
-   -key ./hdl_files/client.key \
+   -cert /home/hdl/hdl_files/client.crt \
+   -key /home/hdl/hdl_files/client.key \
    -s https://${HDLFS_SERVER} \
    -config hdlfs1 \
    -dump-config \
@@ -49,8 +49,8 @@ cat .hdlfscli.config.json
     "hdlfs1": {
       "timeout": 3000000000,
       "format": "text",
-      "cert": "./hdl_files/client.crt",
-      "key": "./hdl_files/client.key",
+      "cert": "/home/hdl/hdl_files/client.crt",
+      "key": "/home/hdl/hdl_files/client.key",
       "user": "",
       "role": "",
       "endpoint": "https://${HDLFS_SERVER}"
@@ -59,18 +59,28 @@ cat .hdlfscli.config.json
 }
 
 hdlfscli -config hdlfs1 ls
+hdlfscli -config hdlfs1 cat file_hldfs.csv | hdlfscli -config hdlfs1 download file_hldfs.csv
+hdlfscli -config hdlfs1 upload README_local.md README_hdlfs.md
 hdlfscli -config hdlfs1 -output file_local.txt download file_hdlfs.txt
 ```
 
 add File into File Container
 ```shell
-hdlfscli 
-	-cert client.crt 
-	-key client.key 
-	-cacert rootca.crt 
-	-s https://${HDLFS_SERVER} 
-	-filecontainer ${HDLFS_FILE_CONTAINER} 
+hdlfscli \
+	-cert client.crt \
+	-key client.key \
+	-cacert rootca.crt \
+	-s https://${HDLFS_SERVER} \ 
+	-filecontainer ${HDLFS_FILE_CONTAINER} \ 
 	upload README.md tmp/README.md
+
+hdl@blizzard2:~/hdl_files> hdlfscli \
+> -cert client.crt \
+> -key client.key \
+> -s https://c1c62fe6-39d5-40e2-a5d9-de2074363752.files.hdl.prod-ap12.hanacloud.ondemand.com \
+> -filecontainer c1c62fe6-39d5-40e2-a5d9-de2074363752 \
+> upload README.md README.md
+{"Location":"https://c1c62fe6-39d5-40e2-a5d9-de2074363752.files.hdl.prod-ap12.hanacloud.ondemand.com/webhdfs/v1/README.md"}
 ```
 
 download File from File Container
