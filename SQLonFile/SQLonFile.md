@@ -78,3 +78,30 @@ REFRESH TABLE nation;
 SELECT n_nationkey, n_name FROM nation;
 SELECT * FROM nation;
 ```
+
+```shell
+create remote server sof class 'FILES_SERVICE' 
+ READ ONLY value 'ON';
+
+create schema TPCH in files_service;
+
+create table TPCH.REGION
+(
+    r_regionkey    int,
+    r_name         varchar(25),
+    r_comment      varchar(152)
+) in files_service;
+
+create existing table sofREGION
+(
+    r_regionkey    int,
+    r_name         varchar(25),
+    r_comment      varchar(152)
+) at 'sof..TPCH.REGION';
+
+alter table TPCH.REGION in files_service add datasource as rgns
+csv()
+
+select * from softREGION;
+
+```
