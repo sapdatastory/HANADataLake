@@ -61,6 +61,7 @@ cat .hdlfscli.config.json
 hdlfscli -config hdlfs1 ls
 hdlfscli -config hdlfs1 cat file_hldfs.csv | hdlfscli -config hdlfs1 download file_hldfs.csv
 hdlfscli -config hdlfs1 upload README_local.md README_hdlfs.md
+hdlfscli -config hdlfs1 upload README_local.md tmp/README_hdlfs.md --tmp 디렉토리 생성 후 파일 적재
 hdlfscli -config hdlfs1 -output file_local.txt download file_hdlfs.txt
 ```
 
