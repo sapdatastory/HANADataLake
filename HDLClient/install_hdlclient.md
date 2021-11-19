@@ -1,4 +1,4 @@
-# HANA Data Lake(IQ) Client on Linux x86_64 설치
+# HANA Data Lake Client on Linux x86_64 설치
 
 HANA DATALAKE Client 바이너리 파일을 다운로드하고 압축을 해제합니다.
 
